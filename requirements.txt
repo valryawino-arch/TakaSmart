@@ -2,3 +2,4 @@ Django>=5.2.8,<5.3
 PyMySQL
 cryptography
 requests
+whitenoise

@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7i+r-1eve$wsp82=*w!qgoof%*b1^7ixjqxpuy4$nid-2!^qob
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','.vercel.app']
 # I created a custom user model in myapp/models.py,so i am telling Django to use it instead of the default user model.
 AUTH_USER_MODEL = 'myapp.User'
 
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,8 +125,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
-
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Email
@@ -158,3 +158,35 @@ MPESA_CONSUMER_SECRET = 'a1GluChTkzafPFH1rmQofzUUAd398thy7JPFSZKM0IwGKNJbAA14nIG
 MPESA_SHORTCODE = '174379'
 MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
 MPESA_CALLBACK_URL = ''
+
+
+# ---------------------------------------------------------------
+# Live site (Vercel): these only apply when DB_HOST is set there
+# ---------------------------------------------------------------
+if os.environ.get('DB_HOST'):
+    import requests
+    import certifi
+
+    DEBUG = False
+    SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
+    CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app']
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.environ.get('DB_NAME', 'test'),
+            'USER': os.environ['DB_USER'],
+            'PASSWORD': os.environ['DB_PASSWORD'],
+            'HOST': os.environ['DB_HOST'],
+            'PORT': os.environ.get('DB_PORT', '4000'),
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+                'ssl': {'ca': certifi.where()},
+            },
+        }
+    }
+
+    MPESA_CONSUMER_KEY = os.environ.get('MPESA_CONSUMER_KEY', MPESA_CONSUMER_KEY)
+    MPESA_CONSUMER_SECRET = os.environ.get('MPESA_CONSUMER_SECRET', MPESA_CONSUMER_SECRET)
+    MPESA_PASSKEY = os.environ.get('MPESA_PASSKEY', MPESA_PASSKEY)
+    MPESA_CALLBACK_URL = os.environ.get('MPESA_CALLBACK_URL', MPESA_CALLBACK_URL)
