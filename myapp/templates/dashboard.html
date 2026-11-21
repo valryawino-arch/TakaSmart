@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | TakaSmart Kenya{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <span class="eyebrow">{{ user.get_role_display }}</span>
+        <h2>Hello, {{ user.get_full_name|default:user.username }}</h2>
+
+        <div class="card profile-card">
+            <h3>Your account</h3>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email|default:"Not set" }}</p>
+            <p><strong>Phone:</strong> {{ user.phone_number|default:"Not set" }}</p>
+            <p><strong>Role:</strong> {{ user.get_role_display }}</p>
+        </div>
+
+                {% if user.role == 'resident' %}
+        <p style="margin-top:1.5rem">
+                      <a href="{% url 'request_create' %}" class="btn btn-yellow">Request Collection</a>
+            <a href="{% url 'request_list' %}" class="btn btn-glass" style="background:var(--forest)">My requests</a>
+            <a href="{% url 'location_list' %}" class="btn btn-glass" style="background:var(--forest)">My locations</a>
+        </p>
+        {% endif %}
+        <p class="note">Your full dashboard arrives in a later step.</p>
+    </div>
+</section>
+{% endblock %}

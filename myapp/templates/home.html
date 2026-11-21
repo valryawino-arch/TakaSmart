@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-text">
+            <span class="tag">Smart waste management for Kenya</span>
+            <h1>A Cleaner Kenya Starts With You.</h1>
+            <p>Request a collection, pay with M-Pesa and follow your pickup from request to completion, all in one place.</p>
+            <div class="hero-actions">
+               <a href="{% url 'register' %}" class="btn btn-yellow">Request Collection</a>
+                <a href="{% url 'home' %}#about" class="btn btn-glass">Learn More</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="scene">
+                <div class="float-card card-a">
+                    <span class="card-icon">&#128666;</span>
+                    <strong>Collector on the way</strong>
+                    <small>Arriving today, 10:30 AM</small>
+                </div>
+                <div class="float-card card-b">
+                    <span class="card-icon">&#128241;</span>
+                    <strong>M-Pesa payment confirmed</strong>
+                    <small>Receipt sent to your phone</small>
+                </div>
+                <div class="float-card card-c">
+                    <span class="card-icon">&#9851;</span>
+                    <strong>Waste sorted and recycled</strong>
+                    <small>Helping keep estates clean</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+    <div class="container two-col">
+        <div class="photo photo-about"></div>
+        <div>
+            <span class="eyebrow">About Us</span>
+            <h2>Waste collection that is easy to request, track and pay for</h2>
+            <p>TakaSmart Kenya connects residents, waste collectors and waste management officers on one platform. Residents book a pickup, officers assign the right collector, and everyone sees the status in real time.</p>
+            <p>Payments go through M-Pesa, so there is no cash handling and every transaction has a record.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section section-soft">
+    <div class="container">
+        <span class="eyebrow">Our Services</span>
+        <h2>Everything you need for cleaner surroundings</h2>
+        <div class="grid-3">
+            <article class="card">
+                <span class="card-icon">&#127968;</span>
+                <h3>Household Collection</h3>
+                <p>Regular pickup of household waste from your gate or estate collection point.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">&#127970;</span>
+                <h3>Commercial Collection</h3>
+                <p>Scheduled collection for shops, offices and small businesses.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">&#9851;</span>
+                <h3>Recyclables Pickup</h3>
+                <p>Separate collection of plastics, paper and metals for recycling.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">&#128197;</span>
+                <h3>Choose Your Date</h3>
+                <p>Pick a collection date that suits you and see it confirmed.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">&#128241;</span>
+                <h3>Pay with M-Pesa</h3>
+                <p>Pay safely from your phone and view your payment history anytime.</p>
+            </article>
+            <article class="card">
+                <span class="card-icon">&#128172;</span>
+                <h3>Complaints Handling</h3>
+                <p>Report a missed pickup or a problem and follow how it is resolved.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="section">
+    <div class="container">
+        <span class="eyebrow">How It Works</span>
+        <h2>Four simple steps</h2>
+        <div class="steps">
+            <div class="step"><span class="step-no">1</span><h3>Register</h3><p>Create your resident account in a minute.</p></div>
+            <div class="step"><span class="step-no">2</span><h3>Request</h3><p>Choose a package, location and date.</p></div>
+            <div class="step"><span class="step-no">3</span><h3>Pay</h3><p>Approve the M-Pesa prompt on your phone.</p></div>
+            <div class="step"><span class="step-no">4</span><h3>Track</h3><p>Follow the status until your waste is collected.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- IMPACT -->
+<section id="impact" class="section impact">
+    <div class="container">
+        <span class="eyebrow eyebrow-light">Environmental Impact</span>
+        <h2>Small actions, big change for our communities</h2>
+        <div class="grid-4">
+            <div class="glass stat"><strong>Cleaner</strong><span>estates and roads</span></div>
+            <div class="glass stat"><strong>Less</strong><span>illegal dumping</span></div>
+            <div class="glass stat"><strong>More</strong><span>recycling and sorting</span></div>
+            <div class="glass stat"><strong>Safer</strong><span>and healthier neighbourhoods</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section">
+    <div class="container">
+        <span class="eyebrow">Gallery</span>
+        <h2>Waste collection in Kenyan communities</h2>
+        <div class="gallery">
+            <div class="photo g1"></div>
+            <div class="photo g2"></div>
+            <div class="photo g3"></div>
+            <div class="photo g4"></div>
+            <div class="photo g5"></div>
+            <div class="photo g6"></div>
+        </div>
+        <p class="note">Photo credits: add the photographer and licence for each image here.</p>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section section-soft">
+    <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h2>Get in touch</h2>
+        <div class="grid-3">
+            <div class="card"><span class="card-icon">&#128205;</span><h3>Office</h3><p>Nairobi, Kenya</p></div>
+            <div class="card"><span class="card-icon">&#128222;</span><h3>Phone</h3><p>+254 700 000 000</p></div>
+            <div class="card"><span class="card-icon">&#9993;</span><h3>Email</h3><p>info@takasmart.co.ke</p></div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

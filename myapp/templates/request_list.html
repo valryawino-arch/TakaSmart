@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}My Requests | TakaSmart Kenya{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <span class="eyebrow">Resident</span>
+        <h2>My collection requests</h2>
+
+        <p><a href="{% url 'request_create' %}" class="btn btn-yellow btn-small">+ New request</a></p>
+
+        {% if requests_made %}
+        <div class="grid-3">
+            {% for r in requests_made %}
+            <article class="card">
+                <h3>Request #{{ r.pk }}</h3>
+                <p><strong>Status:</strong> {{ r.get_status_display }}</p>
+                <p>{{ r.package.name }} - KES {{ r.amount }}</p>
+                <p>{{ r.waste_type.name }}<br>{{ r.location.label }}, {{ r.location.estate }}</p>
+                                <p><small>Preferred date: {{ r.preferred_date }}</small></p>
+                {% if r.is_paid %}
+                    <p><strong style="color:var(--emerald)">&#10003; Paid</strong></p>
+                {% else %}
+                    <form method="post" action="{% url 'pay_request' r.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-yellow btn-small" style="border:none;cursor:pointer">Pay with M-Pesa</button>
+                    </form>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p>You have no requests yet.</p>
+        {% endif %}
+
+        <p style="margin-top:1.5rem"><a href="{% url 'dashboard' %}">&larr; Back to dashboard</a></p>
+    </div>
+</section>
+{% endblock %}

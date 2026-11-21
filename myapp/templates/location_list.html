@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}My Locations | TakaSmart Kenya{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <span class="eyebrow">Resident</span>
+        <h2>My collection locations</h2>
+
+        <p><a href="{% url 'location_create' %}" class="btn btn-yellow btn-small">+ Add location</a></p>
+
+        {% if locations %}
+        <div class="grid-3">
+            {% for loc in locations %}
+            <article class="card">
+                <h3>{{ loc.label }}</h3>
+                <p>{{ loc.estate }}<br>{{ loc.street_address }}</p>
+                {% if loc.landmark %}<p><small>Landmark: {{ loc.landmark }}</small></p>{% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+            <p>You have no saved locations yet. Add one to start requesting collections.</p>
+        {% endif %}
+
+        <p style="margin-top:1.5rem"><a href="{% url 'dashboard' %}">&larr; Back to dashboard</a></p>
+    </div>
+</section>
+{% endblock %}

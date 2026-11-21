@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TakaSmart Kenya{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="{% url 'home' %}" class="brand">
+        <span class="brand-mark">T</span>
+        <span>Taka<strong>Smart</strong> Kenya</span>
+    </a>
+        <nav class="nav-links">
+        <a href="{% url 'home' %}#about">About</a>
+        <a href="{% url 'home' %}#services">Services</a>
+        <a href="{% url 'home' %}#how">How It Works</a>
+        <a href="{% url 'home' %}#impact">Impact</a>
+        <a href="{% url 'home' %}#gallery">Gallery</a>
+        <a href="{% url 'home' %}#contact">Contact</a>
+    </nav>
+    <div class="nav-auth">
+        {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="nav-user">{{ user.first_name|default:user.username }}</a>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-glass btn-small">Log out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="nav-user">Log in</a>
+            <a href="{% url 'register' %}" class="btn btn-yellow btn-small">Register</a>
+        {% endif %}
+    </div>
+</header>
+
+{% if messages %}
+<div class="container messages">
+    {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+</header>
+
+{% block content %}{% endblock %}
+
+<footer class="footer">
+    <div class="container footer-grid">
+        <div>
+            <a href="{% url 'home' %}" class="brand">
+                <span class="brand-mark">T</span>
+                <span>Taka<strong>Smart</strong> Kenya</span>
+            </a>
+            <p>Smarter waste collection for Kenyan communities, with easy requests and M-Pesa payments.</p>
+        </div>
+        <div>
+            <h4>Quick Links</h4>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#how">How It Works</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div>
+            <h4>Who We Serve</h4>
+            <span>Residents</span>
+            <span>Waste Collectors</span>
+            <span>Waste Management Officers</span>
+        </div>
+    </div>
+    <p class="footer-bottom">&copy; 2026 TakaSmart Kenya. Final-year project.</p>
+</footer>
+
+</body>
+</html>
