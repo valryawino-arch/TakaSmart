@@ -170,6 +170,9 @@ if os.environ.get('DB_HOST'):
     DEBUG = False
     SECRET_KEY = os.environ.get('SECRET_KEY', SECRET_KEY)
     CSRF_TRUSTED_ORIGINS = ['https://*.vercel.app']
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     DATABASES = {
         'default': {
