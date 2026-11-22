@@ -260,3 +260,6 @@ a { text-decoration: none; color: inherit; }
     padding: .75rem 1rem; border: 1.5px solid #c9d8cd; border-radius: 12px;
     font-size: 1rem; font-family: inherit; background: #fff;
 }
+.whatsapp-card { display: block; color: inherit; }
+.whatsapp-card .card-icon { display: inline-block; line-height: 0; }
+.whatsapp-card:hover { border-top-color: #25D366; }
